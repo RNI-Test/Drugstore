@@ -5,7 +5,7 @@ services:
     image: ana/apoteka
     build:
       dockerfile: Dockerfile
-      context: ./
+      context: ./../backend/
       target: final
     restart: on-failure
     networks:

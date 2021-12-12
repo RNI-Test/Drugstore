@@ -1,6 +1,22 @@
 version: '3.9'
 
 services:
+  gateway:
+    image: ana/front-apoteka
+    build:
+      context: build/gateway/
+      target: gatewayWithFront
+      args:
+        - SMART_TUTOR_API_URL=http://localhost:64677/pharmacy/
+    restart: on-failure
+    networks:
+      - public
+      - application
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pharmacy
+
   pharmacy:
     image: ana/apoteka
     build:
@@ -46,6 +62,12 @@ volumes:
   web-sql:
 
 networks:
+  public:
+    name: public
+    driver: bridge
+  application:
+    name: application
+    driver: bridge
   database:
     name: database
     driver: bridge

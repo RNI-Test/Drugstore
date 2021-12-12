@@ -3,7 +3,7 @@
 FROM node:15.14.0-alpine AS frontBuild
 WORKDIR /src
 COPY ./files/install-dependencies.sh .
-ARG FRONTEND_APP_SRC_URL=https://github.com/Clean-CaDET/platform-tutor-ui-web/archive/refs/heads/master.tar.gz
+ARG FRONTEND_APP_SRC_URL=https://github.com/RNI-Test/DrugstoreFrontend/archive/refs/heads/master.tar.gz
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN chmod +x ./install-dependencies.sh && \
     ./install-dependencies.sh ${FRONTEND_APP_SRC_URL}

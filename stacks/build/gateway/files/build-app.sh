@@ -6,4 +6,4 @@ envsubst < environment.ts.template > ./frontend/src/environments/environment.ts 
 cd frontend || exit
 npm run build --prod && \
 cd dist && \
-mv "$(find . -maxdepth 1 -type d | tail -n 1)" ./app     
+mv "$(find . -maxdepth 1 -type d | tail -n 1)" /app     

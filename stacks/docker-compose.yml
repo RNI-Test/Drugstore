@@ -7,7 +7,7 @@ services:
       context: build/gateway/
       target: gatewayWithFront
       args:
-        - PHARMACY_API_URL=http://localhost:8081/pharmacy/
+        - PHARMACY_API_URL=http://127.0.0.1:8080/pharmacy/
     restart: on-failure
     networks:
       - public

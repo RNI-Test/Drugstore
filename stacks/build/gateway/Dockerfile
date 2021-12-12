@@ -2,7 +2,6 @@
 
 FROM node:16-alpine3.12 AS frontBuild
 WORKDIR /src
-COPY ./files/install-dependencies.sh .
 ARG FRONTEND_APP_SRC_URL=https://github.com/RNI-Test/DrugstoreFrontend/archive/refs/heads/master.tar.gz
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk --update --no-cache add \

@@ -1,12 +1,18 @@
 # syntax=docker/dockerfile:1
 
-FROM node:15.14.0-alpine AS frontBuild
+FROM node:16-alpine3.12 AS frontBuild
 WORKDIR /src
 COPY ./files/install-dependencies.sh .
 ARG FRONTEND_APP_SRC_URL=https://github.com/RNI-Test/DrugstoreFrontend/archive/refs/heads/master.tar.gz
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
-RUN chmod +x ./install-dependencies.sh && \
-    ./install-dependencies.sh ${FRONTEND_APP_SRC_URL}
+RUN apk --update --no-cache add \
+    curl \
+    tar \
+    gettext && \
+    curl -L "${FRONTEND_APP_SRC_URL}" | tar -xz && \
+    mv "$(find . -maxdepth 1 -type d | tail -n 1)" app && \
+    cd app/frontend && \
+    npm install
 COPY ./files/environment.ts.template ./app
 COPY ./files/build-app.sh .
 ARG PHARMACY_API_URL

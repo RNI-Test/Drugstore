@@ -7,7 +7,7 @@ services:
       context: build/gateway/
       target: gatewayWithFront
       args:
-        - SMART_TUTOR_API_URL=http://localhost:64677/pharmacy/
+        - PHARMACY_API_URL=http://localhost:64677/pharmacy/
     restart: on-failure
     networks:
       - public
@@ -15,7 +15,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - pharmacy
+      - pharmacy 
 
   pharmacy:
     image: ana/apoteka
@@ -25,6 +25,7 @@ services:
       target: final
     restart: on-failure
     networks:
+      - application
       - database
     environment:
       DB_CONNECTION_STRING: "host=database;port=5432;database=drugstore;user Id=postgres;password=drugstore123;"

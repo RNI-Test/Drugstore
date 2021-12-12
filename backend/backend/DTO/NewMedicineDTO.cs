@@ -18,5 +18,10 @@ namespace backend.DTO
         public string PotentialDangers { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<int> MedicinesToCombineWith { get; set; }
+
+        public NewMedicineDTO()
+        {
+            this.MedicinesToCombineWith = new List<int>();
+        }
     }
 }
